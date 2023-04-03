@@ -57,12 +57,12 @@ services:
       - trino-network
   
       
-#  trino-setup:
-#   build: ./cli 
-#   networks:
-#      - trino-network
-#   depends_on:
-#      - trino
+  trino-setup:
+   build: ./cli 
+   networks:
+      - trino-network
+   depends_on:
+      - trino
 
 volumes:
   trino:
