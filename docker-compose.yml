@@ -20,7 +20,7 @@ services:
     ports:
       - '9083:9083' # Metastore Thrift
     volumes:
-      - ./conf/metastore-site.xml:/opt/apache-hive-metastore-3.0.0-bin/conf/metastore-site.xml:ro
+      - ./metastore_conf/metastore-site.xml:/opt/apache-hive-metastore-3.0.0-bin/conf/metastore-site.xml:ro
     environment:
       METASTORE_DB_HOSTNAME: mariadb
     depends_on:
@@ -35,9 +35,6 @@ services:
       - 8080:8080 
     volumes:
       - ./trino/catalog:/etc/trino/catalog
-      - ./trino/sql_files:/sql_files
-#    command: 
-#      bin/bash -c "/usr/lib/trino/bin/run-trino && sleep 60 && trino --file sql_files/create_tables.sql"
     networks:
       - trino-network
     depends_on: 
@@ -58,37 +55,27 @@ services:
     command: server /data --console-address ":9001"
     networks:
       - trino-network
-
-  createbuckets:
-    image: minio/mc
-    depends_on:
-      - minio
-    entrypoint: >
-      /bin/sh -c "
-      sleep 60;
-      /usr/bin/mc config host add myminio http://minio:9000 test test12334567;
-      /usr/bin/mc mb myminio/sample-lakehouse;
-      /usr/bin/mc mb myminio/sample-lakehouse/raw;
-      /usr/bin/mc mb myminio/sample-lakehouse/analytics;
-      exit 0;
-      "
-
-
+  
+      
+#  trino-setup:
+#   build: ./cli 
+#   networks:
+#      - trino-network
+#   depends_on:
+#      - trino
 
 volumes:
   trino:
     driver: local
-  conf:
+  metastore_conf:
     driver: local
   minio-data:
     driver: local
+  metastore:
+    driver: local 
 
 networks:
   trino-network:
     driver: bridge
 
 
-#create sql file with commands 
-#commit
-#create 
-#remove hive metastore in favour of jdbc metastore 
