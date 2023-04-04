@@ -2,7 +2,7 @@ version: '3'
 services:
 
   mariadb:
-    image: 'mariadb:latest'
+    image: 'mariadb:10.11.2'
     hostname: mariadb
     ports:
       - '3306:3306'
@@ -58,10 +58,26 @@ services:
   
       
   trino-setup:
-   build: ./cli 
-   networks:
+    build: ./cli 
+    restart: "no"
+    networks:
       - trino-network
-   depends_on:
+    depends_on:
+      - trino
+  
+  metabase:
+    image: metabase/metabase:v0.45.3
+    ports:
+      - "3000:3000"
+    networks:
+      - trino-network
+    volumes:
+      - ./metabase/plugins:/plugins
+      - ./metabase/data:/metabase-data
+    environment:
+      MB_PLUGINS_DIR: /plugins 
+      MB_DB_FILE: /metabase-data/metabase.db
+    depends_on:
       - trino
 
 volumes:

@@ -47,7 +47,7 @@ The storage in this project comes preconfigured with a bucket and 4 zones (via k
 
 This is according to the medaillon architecture, more on it can be found [here](https://www.databricks.com/glossary/medallion-architecture). 
 
-Since it might be interesting to directly work with some data, I have added a parquet file about issued loans to the raw zone. 
+Since it might be interesting to directly work with some data, I have added a parquet file about people, their jobs and their respective salarys which needs some cleaning, to the raw zone. You can clean it and create new tables with the refined data or directly visualize it using Meatbase.
 
 **Table formats**
 
@@ -77,6 +77,11 @@ In this project the computational service (Trino) is decoupled from the storage 
 **BI Tool**
 
 I have added and pre-configured Metabase as a BI Tool, in order for you to directly work with the Lakehouse. Metabase is also deployed in a container which has a volume with configurations mounted to it.
+
+You can access metabase with the following credentials
+
+Username: test
+Password: test123!
 
 ### How to deploy it locally 
 
