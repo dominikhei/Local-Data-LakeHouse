@@ -1,1 +1,5 @@
 .DS_Store
+
+*.jar
+
+!starburst-2.0.0.metabase-driver.jar
