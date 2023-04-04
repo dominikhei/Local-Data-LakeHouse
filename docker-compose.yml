@@ -87,8 +87,10 @@ volumes:
     driver: local
   minio-data:
     driver: local
-  metastore:
+  metabase:
     driver: local 
+  cli:
+    driver: local
 
 networks:
   trino-network:
