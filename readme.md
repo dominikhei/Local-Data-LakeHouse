@@ -41,7 +41,6 @@ As for the storage layer, I have chosen Minio, which is an open source, S3 compl
 
 The storage in this project comes preconfigured with a bucket and a raw zone (via a key prefix):
 
-
 Since it might be interesting to directly work with some data, I have added a parquet file to the raw zone about people, their jobs and their respective salarys which needs some cleaning. You can clean it and create new tables with the refined data or directly visualize it using Metabase.
 
 **Table formats**
