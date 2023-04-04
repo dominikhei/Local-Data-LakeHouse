@@ -39,13 +39,8 @@ __Note:__ This project is only suited for testing purposes and not for a product
 
 As for the storage layer, I have chosen Minio, which is an open source, S3 compliant Object storage. Such a storage has less operational cost than a traditional data warehouses and enables us to store all types of data and formats. Moreover since it is decoupled from our query engine we can scale it independently, if we need additional storage but not more processing power. 
 
-The storage in this project comes preconfigured with a bucket and 4 zones (via key prefixes):
-- raw
-- bronze
-- silver 
-- gold 
+The storage in this project comes preconfigured with a bucket and a raw zone (via a key prefix):
 
-This is according to the medaillon architecture, more on it can be found [here](https://www.databricks.com/glossary/medallion-architecture). 
 
 Since it might be interesting to directly work with some data, I have added a parquet file to the raw zone about people, their jobs and their respective salarys which needs some cleaning. You can clean it and create new tables with the refined data or directly visualize it using Metabase.
 
