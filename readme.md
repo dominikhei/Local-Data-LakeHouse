@@ -74,7 +74,7 @@ I have added and pre-configured Metabase as a BI Tool, in order for you to direc
 
 You can access Metabase with the following credentials
 
-Username: test
+Email: test@testmail.com
 Password: test123!
 
 ### How to deploy it locally 
